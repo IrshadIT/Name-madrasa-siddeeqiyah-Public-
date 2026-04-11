@@ -8,7 +8,7 @@
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body {margin:0;font-family:Poppins;background:#f5f5f5}
+body {margin:0;font-family:'Poppins',sans-serif;background:#f5f5f5}
 
 /* NAVBAR */
 nav {
@@ -16,164 +16,438 @@ display:flex;justify-content:space-between;
 align-items:center;
 padding:10px 30px;
 background:#0a5c36;color:white;
+position:sticky;top:0;z-index:1000
 }
 
-nav img {height:50px}
+nav img {height:50px;border-radius:5px}
+
+nav h2 {margin:0;color:gold}
 
 nav a {
 color:white;margin:10px;
-text-decoration:none;
+text-decoration:none;font-weight:500
+}
+
+/* LANGUAGE SWITCHER */
+.lang {
+text-align:center;padding:10px;
+background:#083d2b
+}
+
+.lang button {
+margin:5px;padding:8px 15px;
+border:none;border-radius:5px;
+cursor:pointer;background:gold;color:black
 }
 
 /* HERO */
 .hero {
 height:90vh;
-background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+background:linear-gradient(rgba(0,0,0,0.7),rgba(0,0,0,0.7)),
 url('https://images.unsplash.com/photo-1584697964403-2ecb02e1c7f3');
-background-size:cover;
+background-size:cover;background-position:center;
 display:flex;align-items:center;justify-content:center;
-color:white;text-align:center;
+color:white;text-align:center
 }
 
-<section class="section" id="login">
-<h2>Login</h2>
+.hero h1 {font-size:45px;margin-bottom:10px}
 
-<input type="text" id="username" placeholder="Username"><br><br>
-<input type="password" id="password" placeholder="Password"><br><br>
+.hero p {font-size:20px;margin-bottom:30px}
 
-<button class="btn" onclick="login()">Login</button>
-
-<p id="msg"></p>
-</section>
-
-<script>
-async function login() {
-  const username = document.getElementById("username").value;
-  const password = document.getElementById("password").value;
-
-  const res = await fetch("https://localhost:5001/api/auth/login", {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({ username, password })
-  });
-
-  if(res.ok){
-    document.getElementById("msg").innerText = "Login Success";
-  } else {
-    document.getElementById("msg").innerText = "Invalid Login";
-  }
-}
-</script>
-  
-/* BUTTON */
+/* BUTTONS */
 .btn {
 background:gold;color:black;
-padding:12px 25px;margin:10px;
-border-radius:25px;text-decoration:none;
+padding:12px 30px;margin:10px;
+border-radius:30px;text-decoration:none;
+font-weight:bold;display:inline-block;
+transition:0.3s
 }
 
-/* SECTION */
-.section {padding:60px;text-align:center}
+.btn:hover {
+background:#ffd700;transform:scale(1.05)
+}
+
+/* SECTIONS */
+.section {padding:60px 20px;text-align:center}
+
+.section h2 {
+color:#0a5c36;font-size:32px;margin-bottom:30px
+}
 
 /* CARDS */
-.cards {display:flex;flex-wrap:wrap;justify-content:center}
-.card {
-background:white;padding:20px;margin:10px;
-border-radius:10px;width:220px;
-box-shadow:0 5px 15px rgba(0,0,0,0.1)
+.cards {
+display:flex;flex-wrap:wrap;justify-content:center;gap:20px
 }
+
+.card {
+background:white;padding:25px;
+border-radius:15px;width:250px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1);
+transition:0.3s
+}
+
+.card:hover {transform:translateY(-10px)}
+
+.card-icon {font-size:40px;margin-bottom:15px}
 
 /* GALLERY */
-.gallery img {
-width:250px;margin:10px;border-radius:10px
+.gallery {
+display:flex;flex-wrap:wrap;justify-content:center;gap:15px
 }
 
-/* QR */
-.qr {width:200px}
+.gallery img {
+width:300px;height:200px;object-fit:cover;
+border-radius:10px;transition:0.3s
+}
 
-/* WHATSAPP */
+.gallery img:hover {transform:scale(1.05)}
+
+/* ADMIN DASHBOARD */
+.dashboard {
+background:white;padding:30px;margin:20px auto;
+border-radius:15px;max-width:600px;
+box-shadow:0 5px 20px rgba(0,0,0,0.1)
+}
+
+.dashboard h3 {color:#0a5c36;margin-top:20px}
+
+.dashboard input, .dashboard select {
+width:100%;padding:10px;margin:8px 0;
+border:1px solid #ddd;border-radius:5px
+}
+
+/* QR CODE */
+.qr-section {background:#f0f0f0;padding:40px}
+
+.qr {
+width:220px;height:220px;
+border:5px solid #0a5c36;border-radius:10px;
+padding:10px;background:white
+}
+
+/* WHATSAPP FLOAT */
 .whatsapp {
 position:fixed;bottom:20px;right:20px;
 background:#25D366;color:white;
 padding:15px;border-radius:50%;
-text-decoration:none;
+text-decoration:none;font-size:24px;
+box-shadow:0 5px 15px rgba(0,0,0,0.3)
 }
 
+/* FOOTER */
 footer {
 background:#0a5c36;color:white;
-padding:20px;text-align:center
+padding:30px;text-align:center
 }
+
+/* HIDE/SHOW LANGUAGE */
+.lang-content {display:none}
+.lang-content.active {display:block}
 </style>
+
+<script>
+function setLang(lang){
+document.querySelectorAll('.lang-content').forEach(el=>el.classList.remove('active'));
+document.getElementById(lang).classList.add('active');
+}
+</script>
 </head>
 
 <body>
 
 <!-- NAVBAR -->
 <nav>
-  <img src="logo.png" style="height:50px;">
-  <div>
-    <a href="#home">Home</a>
-    <a href="#academics">Academics</a>
-    <a href="#gallery">Gallery</a>
-    <a href="#dashboard">Dashboard</a>
-    <a href="#contact">Contact</a>
-  </div>
+<div style="display:flex;align-items:center;gap:15px">
+<img src="logo.png" onerror="this.style.display='none';this.nextElementSibling.style.display='flex'" style="display:none">
+<h2 style="display:flex;align-items:center;gap:10px">
+<span style="font-size:35px">🕌</span>
+<span>Madrasa<br><small style="font-size:14px;color:white">Siddeeqiyah</small></span>
+</h2>
+</div>
+<div>
+<a href="#home">Home</a>
+<a href="#about">About</a>
+<a href="#programs">Programs</a>
+<a href="#gallery">Gallery</a>
+<a href="#admin">Admin</a>
+<a href="#donate">Donate</a>
+<a href="#contact">Contact</a>
+</div>
 </nav>
 
-<!-- HERO -->
-<section class="hero" id="home">
-<div>
-<h1>Empowering Islamic Knowledge</h1>
-<p>Quran • Hifz • Hadith • Islamic Studies</p>
+<!-- LANGUAGE SWITCHER -->
+<div class="lang">
+<button onclick="setLang('en')">English</button>
+<button onclick="setLang('ar')">العربية</button>
+<button onclick="setLang('ur')">اردو</button>
+</div>
 
-<a class="btn" href="#donate">Donate</a>
+<!-- HERO SECTION -->
+<section class="hero" id="home">
+<div id="en" class="lang-content active">
+<h1>Empowering Islamic Knowledge</h1>
+<p>Quran • Hifz • Hadith • Islamic Studies<br>Miryalaguda, Telangana</p>
+<a class="btn" href="#admin">Admin Panel</a>
+<a class="btn" href="#donate">Donate Now</a>
 <a class="btn" href="https://wa.me/917287833953">WhatsApp</a>
+</div>
+
+<div id="ar" class="lang-content">
+<h1>تعليم العلوم الإسلامية</h1>
+<p>القرآن • الحفظ • الحديث • الدراسات الإسلامية<br>ميريالغودا، تيلانغانا</p>
+<a class="btn" href="#admin">لوحة التحكم</a>
+<a class="btn" href="#donate">تبرع الآن</a>
+<a class="btn" href="https://wa.me/917287833953">واتساب</a>
+</div>
+
+<div id="ur" class="lang-content">
+<h1>اسلامی علوم کی تعلیم</h1>
+<p>قرآن • حفظ • حدیث • اسلامی تعلیمات<br>مریالگوڈا، تیلنگانہ</p>
+<a class="btn" href="#admin">ایڈمن پینل</a>
+<a class="btn" href="#donate">عطیہ دیں</a>
+<a class="btn" href="https://wa.me/917287833953">واٹس ایپ</a>
+</div>
+</section>
+
+<!-- ABOUT -->
+<section id="about" class="section">
+<h2>About Madrasa Siddeeqiyah</h2>
+<div class="cards">
+<div class="card">
+<div class="card-icon">👨‍🏫</div>
+<h3>Mufti Yaqoob Saab</h3>
+<p>Graduate of Darul Uloom (UP)<br>Best Alim & Mufti in Telangana</p>
+</div>
+<div class="card">
+<div class="card-icon">🎯</div>
+<h3>Our Mission</h3>
+<p>Taleem • Tarbiyah • Tazkiyah<br>Education with Character Building</p>
+</div>
+<div class="card">
+<div class="card-icon">🏆</div>
+<h3>Excellence</h3>
+<p>Best Islamic Education<br>Summer Jamath Programs</p>
+</div>
 </div>
 </section>
 
 <!-- PROGRAMS -->
-<section id="academics" class="section">
-<h2>Programs</h2>
+<section id="programs" class="section" style="background:white">
+<h2>Our Programs</h2>
 <div class="cards">
-<div class="card">Qaida</div>
-<div class="card">Hifz Quran</div>
-<div class="card">Hadith</div>
-<div class="card">Alim Course</div>
+<div class="card">
+<div class="card-icon">📖</div>
+<h3>Qaida</h3>
+<p>Noorani & Madani Qaida<br>Foundation Course</p>
+</div>
+<div class="card">
+<div class="card-icon">🕌</div>
+<h3>Hifz-e-Quran</h3>
+<p>Full Quran Memorization<br>Daily Sabaq & Sabqi</p>
+</div>
+<div class="card">
+<div class="card-icon">📚</div>
+<h3>Hadith Studies</h3>
+<p>40 Hadith Nawawi<br>Basic to Advanced</p>
+</div>
+<div class="card">
+<div class="card-icon">🎓</div>
+<h3>Alim Course</h3>
+<p>Comprehensive Islamic Studies<br>Leading to Mufti</p>
+</div>
 </div>
 </section>
 
 <!-- GALLERY -->
 <section id="gallery" class="section">
-<h2>Gallery</h2>
+<h2>Gallery & Activities</h2>
 <div class="gallery">
-<img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff">
-<img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae">
-<img src="https://images.unsplash.com/photo-1584697964403-2ecb02e1c7f3">
+<img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff" alt="Madrasa">
+<img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae" alt="Students">
+<img src="https://images.unsplash.com/photo-1584697964403-2ecb02e1c7f3" alt="Quran">
+<img src="https://images.unsplash.com/photo-1542810634-71277d95dcbb" alt="Islamic">
+</div>
+<p style="margin-top:20px;color:#666">Boys Hostel • Summer Education • Best Care for Kids</p>
+</section>
+
+<!-- ADMIN DASHBOARD -->
+<section id="admin" class="section" style="background:#f0f0f0">
+<h2>Admin Dashboard</h2>
+<div class="dashboard">
+<h3>📊 Quick Stats</h3>
+<div class="cards" style="margin-bottom:20px">
+<div class="card" style="width:120px;padding:15px">
+<h4 style="color:#0a5c36;margin:0">120</h4>
+<p style="margin:5px 0">Total Students</p>
+</div>
+<div class="card" style="width:120px;padding:15px">
+<h4 style="color:#0a5c36;margin:0">8</h4>
+<p style="margin:5px 0">New Admissions</p>
+</div>
+<div class="card" style="width:120px;padding:15px">
+<h4 style="color:#0a5c36;margin:0">₹25K</h4>
+<p style="margin:5px 0">Pending Fees</p>
+</div>
+<div class="card" style="width:120px;padding:15px">
+<h4 style="color:#0a5c36;margin:0">18</h4>
+<p style="margin:5px 0">Hostel Rooms</p>
+</div>
+</div>
+
+<h3>➕ Add New Student</h3>
+<input type="text" id="sName" placeholder="Student Full Name">
+<input type="text" id="sFather" placeholder="Father's Name">
+<input type="text" id="sPhone" placeholder="Parent Phone / WhatsApp">
+<select id="sCourse">
+<option value="">Select Course</option>
+<option>Qaida</option>
+<option>Hifz Quran</option>
+<option>Hadith</option>
+<option>Alim Course</option>
+</select>
+<select id="sHostel">
+<option value="">Hostel Required?</option>
+<option value="yes">Yes - Full Boarding</option>
+<option value="no">No - Day Scholar</option>
+</select>
+<button class="btn" onclick="addStudent()" style="width:100%;margin-top:15px">Add Student</button>
+
+<h3>📋 Recent Students</h3>
+<ul id="studentList" style="text-align:left;list-style:none;padding:0">
+<li style="padding:10px;border-bottom:1px solid #eee">Loading...</li>
+</ul>
+
+<a class="btn" href="https://forms.gle/" target="_blank" style="background:#0a5c36;color:white">Open Full Form</a>
 </div>
 </section>
 
-<!-- DONATE -->
-<section id="donate" class="section">
-<h2>Donate</h2>
-<p>Scan QR Code</p>
+<!-- DONATION -->
+<section id="donate" class="section qr-section">
+<h2>Support Madrasa Siddeeqiyah</h2>
+<p>Your Sadaqah & Zakat helps students and food services</p>
 
-<img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=7287833953@upi">
+<img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=7287833953@upi&pn=Madrasa%20Siddeeqiyah&cu=INR" alt="Scan to Pay">
 
-<p><b>UPI: 7287833953</b></p>
+<p style="margin-top:20px"><b>UPI ID: 7287833953@upi</b></p>
+<p>Mufti Yaqoob Saab: <b>+91 7287833953</b></p>
+
+<div style="margin-top:30px">
+<h4>🍲 Food Sponsorship</h4>
+<p>Sponsor meals for students</p>
+<a class="btn" href="https://forms.gle/" target="_blank" style="background:#0a5c36;color:white">Sponsor Food</a>
+</div>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="section">
-<h2>Contact</h2>
-<p>📍 Miryalaguda, Telangana</p>
-<p>📞 +91 7287833953</p>
+<h2>Contact Us</h2>
+<div class="cards">
+<div class="card">
+<div class="card-icon">📍</div>
+<h3>Address</h3>
+<p>Madrasa Siddeeqiyah<br>Miryalaguda, Nalgonda District<br>Telangana, India</p>
+</div>
+<div class="card">
+<div class="card-icon">📞</div>
+<h3>Phone</h3>
+<p>Mufti Yaqoob Saab<br><b>+91 7287833953</b><br><small>WhatsApp Available</small></p>
+<p>Ghalib Saab<br><b>+91 9177338852</b></p>
+</div>
+<div class="card">
+<div class="card-icon">🕌</div>
+<h3>Prayer Times</h3>
+<p>Fajr: 5:00 AM<br>Zuhr: 1:15 PM<br>Asr: 4:30 PM<br>Maghrib: 6:45 PM<br>Isha: 8:00 PM</p>
+</div>
+</div>
+
+<div style="margin-top:30px">
+<iframe 
+src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d60942.71056748145!2d79.5667!3d16.8667!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bcb6bc0c6c2c0c1%3A0x8c8c8c8c8c8c8c8c!2sMiryalaguda%2C%20Telangana!5e0!3m2!1sen!2sin!4v1234567890" 
+width="100%" height="300" style="border:0;border-radius:10px" allowfullscreen="" loading="lazy">
+</iframe>
+</div>
 </section>
 
+<!-- FOOTER -->
 <footer>
-© 2026 Madrasa Siddeeqiyah
+<p><b>© 2026 Madrasa Siddeeqiyah</b> - All Rights Reserved</p>
+<p>Under the guidance of Mufti Yaqoob Saab | Darul Uloom Graduate</p>
+<p style="margin-top:10px;font-size:14px">
+<a href="#home" style="color:gold;text-decoration:none">Home</a> | 
+<a href="#about" style="color:gold;text-decoration:none">About</a> | 
+<a href="#programs" style="color:gold;text-decoration:none">Programs</a> | 
+<a href="#contact" style="color:gold;text-decoration:none">Contact</a>
+</p>
 </footer>
 
-<a class="whatsapp" href="https://wa.me/917287833953">💬</a>
+<!-- WHATSAPP FLOAT -->
+<a class="whatsapp" href="https://wa.me/917287833953?text=Assalamualaikum%2C%20I%20want%20to%20know%20about%20Madrasa%20Siddeeqiyah" title="Chat on WhatsApp">💬</a>
+
+<!-- JAVASCRIPT -->
+<script>
+// Student Management (Local Storage for now)
+let students = JSON.parse(localStorage.getItem('students') || '[]');
+
+function addStudent(){
+const name = document.getElementById('sName').value;
+const father = document.getElementById('sFather').value;
+const phone = document.getElementById('sPhone').value;
+const course = document.getElementById('sCourse').value;
+const hostel = document.getElementById('sHostel').value;
+
+if(!name || !father || !phone || !course){
+alert('Please fill all fields');
+return;
+}
+
+const student = {
+id: Date.now(),
+name, father, phone, course, hostel,
+date: new Date().toLocaleDateString()
+};
+
+students.push(student);
+localStorage.setItem('students', JSON.stringify(students));
+
+// Clear form
+document.getElementById('sName').value = '';
+document.getElementById('sFather').value = '';
+document.getElementById('sPhone').value = '';
+document.getElementById('sCourse').value = '';
+document.getElementById('sHostel').value = '';
+
+alert('Student Added Successfully!');
+showStudents();
+}
+
+function showStudents(){
+const list = document.getElementById('studentList');
+if(students.length === 0){
+list.innerHTML = '<li style="padding:10px;color:#999">No students added yet</li>';
+return;
+}
+
+list.innerHTML = students.slice(-5).reverse().map(s => `
+<li style="padding:10px;border-bottom:1px solid #eee;display:flex;justify-content:space-between">
+<span><b>${s.name}</b><br><small>${s.course} | ${s.hostel === 'yes' ? 'Hostel' : 'Day'}</small></span>
+<small style="color:#666">${s.date}</small>
+</li>
+`).join('');
+}
+
+// Load on start
+showStudents();
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+anchor.addEventListener('click', function(e){
+e.preventDefault();
+document.querySelector(this.getAttribute('href')).scrollIntoView({
+behavior: 'smooth'
+});
+});
+});
+</script>
 
 </body>
 </html>
