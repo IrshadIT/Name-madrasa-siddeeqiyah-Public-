@@ -5,106 +5,73 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Madrasa Siddeeqiyah</title>
 
-<!-- Google Font -->
 <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap" rel="stylesheet">
 
 <style>
-body {
-    margin: 0;
-    font-family: 'Poppins', sans-serif;
-    background: #f8f9fa;
-}
+body {margin:0;font-family:Poppins;background:#f5f5f5}
 
 /* NAVBAR */
 nav {
-    display: flex;
-    justify-content: space-between;
-    padding: 15px 40px;
-    background: #0a5c36;
-    color: white;
-    position: sticky;
-    top: 0;
+display:flex;justify-content:space-between;
+align-items:center;
+padding:10px 30px;
+background:#0a5c36;color:white;
 }
 
-nav h2 {
-    margin: 0;
-}
+nav img {height:50px}
 
 nav a {
-    color: white;
-    margin-left: 20px;
-    text-decoration: none;
-    font-weight: 500;
+color:white;margin:10px;
+text-decoration:none;
 }
 
 /* HERO */
 .hero {
-    height: 90vh;
-    background: linear-gradient(rgba(10,92,54,0.8), rgba(10,92,54,0.8)),
-    url('https://images.unsplash.com/photo-1584697964403-2ecb02e1c7f3');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
+height:90vh;
+background:linear-gradient(rgba(0,0,0,0.6),rgba(0,0,0,0.6)),
+url('https://images.unsplash.com/photo-1584697964403-2ecb02e1c7f3');
+background-size:cover;
+display:flex;align-items:center;justify-content:center;
+color:white;text-align:center;
 }
 
-.hero h1 {
-    font-size: 40px;
-}
-
+/* BUTTON */
 .btn {
-    display: inline-block;
-    margin: 10px;
-    padding: 12px 25px;
-    background: gold;
-    color: black;
-    text-decoration: none;
-    border-radius: 30px;
-    font-weight: bold;
-    transition: 0.3s;
-}
-
-.btn:hover {
-    background: #ffd700;
-    transform: scale(1.05);
+background:gold;color:black;
+padding:12px 25px;margin:10px;
+border-radius:25px;text-decoration:none;
 }
 
 /* SECTION */
-.section {
-    padding: 60px 20px;
-    text-align: center;
-}
+.section {padding:60px;text-align:center}
 
 /* CARDS */
-.cards {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-}
-
+.cards {display:flex;flex-wrap:wrap;justify-content:center}
 .card {
-    background: white;
-    margin: 15px;
-    padding: 25px;
-    width: 220px;
-    border-radius: 15px;
-    box-shadow: 0px 5px 20px rgba(0,0,0,0.1);
-    transition: 0.3s;
+background:white;padding:20px;margin:10px;
+border-radius:10px;width:220px;
+box-shadow:0 5px 15px rgba(0,0,0,0.1)
 }
 
-.card:hover {
-    transform: translateY(-10px);
+/* GALLERY */
+.gallery img {
+width:250px;margin:10px;border-radius:10px
 }
 
-/* FOOTER */
+/* QR */
+.qr {width:200px}
+
+/* WHATSAPP */
+.whatsapp {
+position:fixed;bottom:20px;right:20px;
+background:#25D366;color:white;
+padding:15px;border-radius:50%;
+text-decoration:none;
+}
+
 footer {
-    background: #0a5c36;
-    color: white;
-    padding: 20px;
-    text-align: center;
+background:#0a5c36;color:white;
+padding:20px;text-align:center
 }
 </style>
 </head>
@@ -113,64 +80,71 @@ footer {
 
 <!-- NAVBAR -->
 <nav>
-<h2>📖 Madrasa Siddeeqiyah</h2>
+<img src="logo.png" onerror="this.style.display='none'">
+<h2>🕌 Madrasa Siddeeqiyah</h2>
 <div>
 <a href="#home">Home</a>
 <a href="#academics">Academics</a>
-<a href="#admissions">Admissions</a>
+<a href="#gallery">Gallery</a>
 <a href="#donate">Donate</a>
 <a href="#contact">Contact</a>
 </div>
 </nav>
 
 <!-- HERO -->
-<section id="home" class="hero">
+<section class="hero" id="home">
 <div>
 <h1>Empowering Islamic Knowledge</h1>
 <p>Quran • Hifz • Hadith • Islamic Studies</p>
 
-<a class="btn" href="#admissions">Apply Now</a>
 <a class="btn" href="#donate">Donate</a>
-<a class="btn" href="https://wa.me/917287833953" target="_blank">WhatsApp</a>
+<a class="btn" href="https://wa.me/917287833953">WhatsApp</a>
 </div>
 </section>
 
-<!-- ACADEMICS -->
+<!-- PROGRAMS -->
 <section id="academics" class="section">
-<h2>Our Programs</h2>
+<h2>Programs</h2>
 <div class="cards">
-<div class="card">📘 Qaida & Nazra</div>
-<div class="card">📖 Quran Hifz</div>
-<div class="card">📚 Hadith Studies</div>
-<div class="card">🎓 Alim Course</div>
+<div class="card">Qaida</div>
+<div class="card">Hifz Quran</div>
+<div class="card">Hadith</div>
+<div class="card">Alim Course</div>
 </div>
 </section>
 
-<!-- ADMISSIONS -->
-<section id="admissions" class="section">
-<h2>Admissions Open</h2>
-<p>Join our madrasa and begin your Islamic journey</p>
-<a class="btn" href="https://forms.gle/" target="_blank">Apply Now</a>
+<!-- GALLERY -->
+<section id="gallery" class="section">
+<h2>Gallery</h2>
+<div class="gallery">
+<img src="https://images.unsplash.com/photo-1591604466107-ec97de577aff">
+<img src="https://images.unsplash.com/photo-1609599006353-e629aaabfeae">
+<img src="https://images.unsplash.com/photo-1584697964403-2ecb02e1c7f3">
+</div>
 </section>
 
-<!-- DONATION -->
+<!-- DONATE -->
 <section id="donate" class="section">
-<h2>Support Our Madrasa</h2>
-<p>Your Sadaqah helps students and food services</p>
+<h2>Donate</h2>
+<p>Scan QR Code</p>
+
+<img class="qr" src="https://api.qrserver.com/v1/create-qr-code/?size=200x200&data=upi://pay?pa=7287833953@upi">
+
 <p><b>UPI: 7287833953</b></p>
 </section>
 
 <!-- CONTACT -->
 <section id="contact" class="section">
-<h2>Contact Us</h2>
+<h2>Contact</h2>
 <p>📍 Miryalaguda, Telangana</p>
 <p>📞 +91 7287833953</p>
 </section>
 
-<!-- FOOTER -->
 <footer>
-© 2026 Madrasa Siddeeqiyah | All Rights Reserved
+© 2026 Madrasa Siddeeqiyah
 </footer>
+
+<a class="whatsapp" href="https://wa.me/917287833953">💬</a>
 
 </body>
 </html>
