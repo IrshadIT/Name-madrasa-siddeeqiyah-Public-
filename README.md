@@ -1,2 +1,2 @@
-# Name-madrasa-siddeeqiyah-Public-
+MMAM
 Madrasa Siddeeqiyah Miryalaguda – Islamic Education &amp; Boys Hostel Website
