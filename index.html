@@ -148,6 +148,33 @@ nav a {color:white;margin:0 12px;text-decoration:none;font-weight:500}
 </div>
 </section>
 
+<!-- ADMISSION FORM -->
+<section id="admission" class="section" style="background:#fff">
+<h2>Student Admission Form</h2>
+
+<div style="max-width:500px;margin:auto;text-align:left">
+
+<input id="name" placeholder="Full Name" style="width:100%;padding:10px;margin:8px 0">
+<input id="father" placeholder="Father Name" style="width:100%;padding:10px;margin:8px 0">
+<input id="phone" placeholder="Phone" style="width:100%;padding:10px;margin:8px 0">
+
+<select id="course" style="width:100%;padding:10px;margin:8px 0">
+<option value="">Select Course</option>
+<option>Qaida</option>
+<option>Hifz</option>
+<option>Islamic Studies</option>
+</select>
+
+<select id="hostel" style="width:100%;padding:10px;margin:8px 0">
+<option value="false">Day Scholar</option>
+<option value="true">Hostel</option>
+</select>
+
+<button class="btn" onclick="submitStudent()">Apply Now</button>
+
+</div>
+</section>
+  
 <!-- DONATION -->
 <section id="donate" class="section" style="background:#f0f0f0">
 <h2>Support Madrasa Siddeeqiyah</h2>
@@ -174,6 +201,38 @@ function setLang(lang){
   document.querySelectorAll('.lang-content').forEach(el => el.classList.remove('active'));
   document.getElementById(lang).classList.add('active');
 }
+
+  async function submitStudent() {
+
+    const student = {
+        fullName: document.getElementById("name").value,
+        fatherName: document.getElementById("father").value,
+        phone: document.getElementById("phone").value,
+        course: document.getElementById("course").value,
+        hostelRequired: document.getElementById("hostel").value === "true"
+    };
+
+    try {
+        const response = await fetch("https://localhost:7131/api/Student", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(student)
+        });
+
+        if (response.ok) {
+            alert("✅ Admission Submitted Successfully!");
+        } else {
+            alert("❌ Error submitting form");
+        }
+
+    } catch (error) {
+        console.error(error);
+        alert("⚠️ Server not reachable");
+    }
+}
+  
 </script>
 </body>
 </html>
